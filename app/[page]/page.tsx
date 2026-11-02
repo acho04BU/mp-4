@@ -30,8 +30,9 @@ export default function ArtPage() {
                 .then((res) => res.json())
     );
 
-    // Handle error and loading states
-    if (error) return <div>Failed to load</div>;
+    // Handle error and loading
+    if (data?.error || error) return <h1>Failed to load</h1>;
+
     if (!data) return <div>Loading...</div>;
 
     // If there is data, get the days otherwise an empty array.

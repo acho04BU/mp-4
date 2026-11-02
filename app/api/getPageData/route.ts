@@ -21,11 +21,12 @@ export async function GET(request:Request): Promise<NextResponse>{
     const res = await fetch(API_URL + API_KEY + "&page=" + page, {cache: "no-store"});
 
     const data = await res.json();
-    console.log(data);
+    console.log("apple");
 
-    if (data.meta?.body.error){
-        console.log(data.meta.body.error);
-        return NextResponse.json({error:data.meta.body.error.root_cause.type}, {status:(data.meta.body.error.status)});
+    if (data.meta?.body.status && data.meta.body.status !== 200){
+        console.log("banana");
+        return NextResponse.json({error:data.meta.body.error.type}, {status:(data.meta.body.status)});
+    }else{
+        return NextResponse.json(data);
     }
-    return NextResponse.json(data);
 }
