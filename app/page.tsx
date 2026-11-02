@@ -6,7 +6,9 @@ import {useState} from "react";
 import Link from "next/link";
 
 const StyledDiv = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 export default function Home(){
