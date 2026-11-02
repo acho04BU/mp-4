@@ -6,6 +6,13 @@ import useSWR from "swr";
 import ArtCard from "../components/ArtCard";
 import styled from "styled-components";
 import {Data} from "@/types/types";
+import Link from "next/link";
+
+const LinkWrapper = styled.div`
+    text-align: center;
+    margin:10px 30px;
+`
+
 
 const ArtContentWrapper = styled.main`
     width: 80vw;
@@ -23,6 +30,7 @@ export default function ArtPage() {
 
     const params = useParams();
 
+    let page = params.page;
     // Fetch Art data with SWR
     const {data, error} = useSWR(`/api/getPageData?page=${params.page}`,
         (url) =>
@@ -38,8 +46,16 @@ export default function ArtPage() {
     // If there is data, get the days otherwise an empty array.
     const artworks = data?.records || [];
 
+    let x = Number(page) + 1;
+    let y = Number(page) - 1;
+
     return (
         <ArtContentWrapper>
+            <LinkWrapper>
+                <Link href={`/${x}`}>Next</Link>
+                <Link href={`/${y}`}>Prev</Link>
+            </LinkWrapper>
+
             <ArtCardsContainer>
                 {
                     artworks.map((Art: Data) =>

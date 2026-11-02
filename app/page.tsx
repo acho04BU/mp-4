@@ -6,7 +6,7 @@ import {useState} from "react";
 import Link from "next/link";
 
 const StyledDiv = styled.div`
-
+    
 `
 
 export default function Home(){
